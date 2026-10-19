@@ -1,0 +1,10 @@
+# Raw data
+data/*.csv
+
+# Temporary / generated outputs
+output/tmp/
+output/*.tmp
+
+# OS files
+.DS_Store
+Thumbs.db
