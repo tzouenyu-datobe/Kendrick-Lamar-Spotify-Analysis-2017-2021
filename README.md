@@ -119,3 +119,6 @@ The analysis identifies candidate collaborations using artist metadata and colla
 6. Use the exported results to reproduce the charts and review the findings.
 
 The raw dataset is not included in this repository. Import paths and database settings must be adapted to the local environment.
+
+## Deck for this analysis
+https://docs.google.com/presentation/d/1FAzr48BYXjKRwpg_84t5_5Eetaj0r_0jGl9G-vAUMqU/edit?usp=sharing
