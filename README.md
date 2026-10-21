@@ -1,300 +1,121 @@
-# Kendrick Lamar Hit Songs Analysis for Spotify Music Editorial and Product teams
-# Business Context
 
-## 1. Background
+# Kendrick Lamar Catalog Analysis for Spotify Editorial and Product Teams
 
-In 2024, Kendrick Lamar and Drake's highly publicized beef sparked widespread discussion across the music industry. Kendrick's diss track "Not Like Us" became a major streaming hit, drawing renewed attention to his music catalog.
+## Business Context
 
-Imagine that Spotify's Music Editorial and Product teams want to capitalize on this cultural moment by creating a music-discovery experience that encourages listeners to explore more of Kendrick Lamar's music, rather than stopping at a single viral track.
+In 2024, Kendrick Lamar and Drake's highly publicized diss battle brought renewed attention to Kendrick Lamar's music. This project explores how Spotify's Music Editorial and Product teams could use historical chart data to design a music-discovery experience that encourages listeners to explore his broader catalog and discover related artists.
 
-The proposed experience could include a curated retrospective playlist featuring Kendrick's signature songs, along with smaller themed playlists based on musical styles and collaborations. These playlists could also introduce listeners to featured artists and encourage them to discover music beyond Kendrick's catalog.
+Using Spotify Charts data from 2017 to 2021, the analysis examines global chart performance, collaboration opportunities, and regional patterns.
 
-The 2024 beef serves as the business scenario motivating this analysis, rather than an event whose impact will be measured. The available dataset covers 2017–2021 and will be used to examine Kendrick Lamar's historical chart performance and develop data-informed product recommendations.
+### Target Audience
 
-## 2. Target Audience
+| Stakeholder | Key Decision |
+|---|---|
+| Music Editorial | Which tracks should anchor a retrospective playlist? |
+| Product Management | How could listeners be encouraged to explore beyond popular tracks? |
+| Regional Editorial | Which tracks or themes might warrant market-specific playlists? |
 
-The primary stakeholders are Spotify's Music Editorial team and Product Managers responsible for music discovery experiences.
+### Key Questions
 
-| Stakeholder | Key Decision | How the Analysis Helps |
-|---|---|---|
-| Music Editorial team | Which songs should be included in the main retrospective playlist? | Identify historically prominent songs and tracks with sustained chart presence. |
-| Product Manager | How can the experience encourage listeners to explore beyond Kendrick's most popular songs? | Identify opportunities for themed playlists and cross-artist discovery. |
-| Regional Editorial team | Should playlist content vary across markets? | Examine historical chart patterns across regions to develop localization hypotheses. |
+- **KQ1: Global Performance** Which Kendrick Lamar songs demonstrated the strongest chart performance and longevity on Spotify's Global Top 200?
+- **KQ2: Collaborations** Which co-credited artists could provide potential pathways for cross-artist discovery?
+- **KQ3: Regional Patterns** How did chart performance vary across markets, and what opportunities might these patterns suggest for localized playlists?
 
-## 3. Business Problem
+## Key Findings
 
-How can Spotify's Music Editorial and Product teams use Kendrick Lamar's historical chart performance and collaboration network to design a music-discovery experience that encourages listeners to explore his broader catalog and discover other artists?
+### KQ1. Global Chart Performance
 
-The analysis will identify historically prominent and long-lasting songs, examine regional chart patterns, and identify featured artists whose collaborations could serve as entry points to additional music recommendations. The findings will inform playlist curation and potential localized content strategies.
+- **HUMBLE.** was the strongest overall performer, with 681 observed chart appearances, a peak rank of #1, approximately 978.3 million cumulative chart streams, and a 741-day span between its first and last observed chart dates.
+- **DNA.** recorded 326 appearances and a peak rank of #3. **All The Stars** recorded 313 appearances, a peak rank of #2, and approximately 499.8 million cumulative chart streams.
+- Annual patterns varied: HUMBLE. recorded 273 appearances in 2017 and 345 in 2018, while All The Stars recorded 286 appearances in 2018.
+- Tracks such as PRIDE., FEEL., LUST., and YAH. could be considered for a secondary “Beyond the Hits” playlist, subject to editorial review.
 
-## 4. Key Questions
+**Implication:** Historical chart performance can help identify established hits and potential catalog rediscovery candidates. Chart appearances and chart span do not indicate uninterrupted listening demand.
 
-### KQ1. Which Kendrick Lamar songs demonstrated the strongest chart performance and longevity on Spotify's Global Top 200 from 2017 to 2021?
+### KQ2. Collaboration and Cross-Artist Discovery
 
-**Stakeholder:** Music Editorial team
+The analysis identifies candidate collaborations using artist metadata and collaboration indicators in track titles, then maps co-credited artists to candidate songs and summarizes their chart performance.
 
-**Decision to Support:**
+**Implication:** Collaboration credits can reveal potential connections between artists. Additional catalog data and editorial review are needed to determine which tracks to recommend next; chart data alone cannot demonstrate that cross-artist discovery will improve engagement.
 
-Which songs should be considered for the main retrospective playlist, and which tracks may be worth rediscovering because of their historical chart presence?
+### KQ3. Regional Chart Patterns
 
-**Analysis Focus:**
-- Chart appearances: the number of distinct chart dates on which a song appeared.
-- Peak chart position: the best rank achieved during the analysis period.
-- Cumulative chart streams: the sum of recorded streams across chart appearances.
-- Annual chart presence: the songs appearing on the chart in each year.
-- Chart span: the calendar time between a song's first and last observed chart dates.
+- **HUMBLE.** appeared in the analyst-defined regional Top 10 in 61 of 66 eligible markets (92.4%).
+- **DNA.** appeared in 51 markets (77.3%), while **LOYALTY.** appeared in 44 (66.7%).
+- **Alright** appeared in 16 markets (24.2%), but most qualifying records were observed on only one chart date, providing limited evidence of sustained visibility.
+- **YAH.** appeared in seven markets (10.6%). In Bulgaria, it reached a peak chart rank of #6 across six observed chart dates spanning five calendar days.
 
-**Expected Output:**
-
-A song-level summary of historical chart performance, including chart appearances, peak rank, cumulative chart streams, annual presence, and chart span.
-
-**Potential Action:**
-
-Use the results to identify historically prominent songs and develop playlist groupings around signature hits, long-running catalog tracks, and other songs worth rediscovering.
-
-**Data Planning:**
-
-1. **Data Scope**
-   - Chart: Global Top 200.
-   - Time period: January 1, 2017, to December 31, 2021.
-   - Artist filter: records whose artist metadata includes Kendrick Lamar.
-   - Analysis grain: song title, with track URLs retained to inspect possible title or version overlaps.
-
-2. **Metric Definitions**
-
-   | Metric | Definition |
-   |---|---|
-   | Chart appearances | Count of distinct chart dates on which a song appears. |
-   | Peak chart position | Minimum observed rank; rank 1 is the highest position. |
-   | Cumulative chart streams | Sum of recorded streams within the defined chart and time scope. |
-   | Annual chart presence | Whether a song appears in each calendar year, with yearly metrics aggregated by song and year. |
-   | Chart span | Calendar time between the first and last observed chart dates. This is not the same as continuous chart presence. |
-
-3. **Analysis Plan**
-   - Inspect the chart-date sequence and verify the observation grain before aggregation.
-   - Aggregate chart appearances, peak rank, and cumulative streams at the song level.
-   - Aggregate the same metrics by song and year to compare annual chart presence.
-   - Examine the distribution of chart appearances and chart span before defining a long-tail group.
-   - Consider continuous chart runs only after verifying that the available snapshots support a defensible definition.
-
-4. **Limitations**
-   - Chart appearances count observed chart dates, not necessarily calendar days.
-   - Chart span does not prove uninterrupted chart presence.
-   - The dataset records chart entries rather than all Spotify listening activity.
-   - If multiple track URLs share the same title, title-level aggregation may combine different versions or recordings. Such cases should be inspected and documented.
-
-### KQ2. Which co-credited artists appeared in Kendrick Lamar's collaborations on the Global Top 200, and how could these collaborations inform cross-artist music discovery?
-
-**Stakeholders:** Music Editorial team and Product Managers
-
-**Decision to Support:**
-
-How could Kendrick Lamar's collaborations serve as entry points for listeners to discover other artists and explore music beyond Kendrick's catalog?
-
-**Analysis Focus:**
-- Identify songs credited to Kendrick Lamar and at least one other artist that appeared on the Global Top 200.
-- Extract individual co-credited artists from the artist metadata.
-- Examine the chart performance of each collaboration.
-- Identify collaborations that could serve as entry points for cross-artist discovery.
-
-**Expected Output:**
-
-A collaboration-level summary showing each song, its co-credited artists, chart appearances, peak rank, cumulative chart streams, and chart span.
-
-A separate artist-to-song mapping will show which collaborations are associated with each co-credited artist.
-
-**Potential Action:**
-
-Use collaborations to develop cross-artist playlist concepts. For example, a Kendrick Lamar collaboration with SZA could serve as an entry point to a broader SZA discovery playlist. Specific song selections for the other artist would require additional data or editorial curation.
-
-**Data Planning:**
-
-1. **Data Scope**
-   - Chart: Global Top 200.
-   - Time period: January 1, 2017, to December 31, 2021.
-   - Artist filter: songs whose artist metadata includes Kendrick Lamar and at least one other credited artist.
-   - Analysis grain: collaboration song, with track URLs retained for validation.
-
-2. **Metric Definitions**
-
-   Reuse the KQ1 definitions for chart appearances, peak chart position, cumulative chart streams, and chart span.
-
-   | Metric or Entity | Definition |
-   |---|---|
-   | Collaboration song | A song credited to Kendrick Lamar and at least one other artist in the available artist metadata. |
-   | Co-credited artist | An individual artist extracted from the collaboration's artist metadata, excluding Kendrick Lamar. |
-   | Collaborations per artist | Count of distinct collaboration songs associated with each co-credited artist. |
-
-3. **Analysis Plan**
-   - Inspect the format of the artist field before parsing it into individual names.
-   - Identify collaboration songs and create an artist-to-song mapping with one record per song–co-credited artist relationship.
-   - Calculate collaboration performance metrics using the same definitions as KQ1.
-   - Summarize the collaborations associated with each co-credited artist.
-   - Explore separate lists of collaborations ranked by cumulative chart streams and chart appearances.
-
-4. **Limitations**
-   - The artist field identifies credited artists but may not distinguish lead artists from featured artists.
-   - A collaboration associated with multiple artists will appear in multiple artist-to-song relationships. These relationships should not be summed as though they were separate songs.
-   - Chart performance does not establish which songs by a co-credited artist are their signature tracks.
-   - Any specific cross-artist playlist recommendations require additional song-level data or editorial input.
-
-### KQ3. How did Kendrick Lamar's chart performance vary across regions, and what opportunities might these patterns suggest for localized playlists?
-
-**Stakeholder:** Regional Editorial team
-
-**Decision to Support:**
-
-Which songs and markets may warrant further exploration when developing region-specific Kendrick Lamar playlists?
-
-**Analysis Focus:**
-- Songs appearing on regional Top 200 charts.
-- Chart appearances and peak chart position by song and region.
-- Cumulative chart streams by song and region.
-- Differences in the composition of songs appearing on regional charts.
-
-**Expected Output:**
-
-A regional comparison of Kendrick Lamar's chart performance, highlighting songs and markets that may warrant further exploration for localized playlist concepts.
-
-**Potential Action:**
-
-Develop hypotheses for region-specific playlist selections based on observed historical chart patterns, to be validated with additional listening and product engagement data.
-
-**Data Planning:**
-
-1. **Data Scope**
-   - Chart: regional Top 200.
-   - Time period: January 1, 2017, to December 31, 2021.
-   - Artist filter: records whose artist metadata includes Kendrick Lamar.
-   - Region scope: regional markets, with the Global chart identified and handled separately.
-   - Analysis grain: song title and region, with track URLs retained for validation.
-
-2. **Metric Definitions**
-
-   Reuse the KQ1 definitions for chart appearances, peak chart position, cumulative chart streams, and chart span, calculated separately for each song and region.
-
-3. **Analysis Plan**
-   - Inspect the distinct values in the region and chart fields.
-   - Confirm how Global and country-level chart records are represented before filtering.
-   - Filter regional Top 200 records and exclude the Global chart from the regional comparison.
-   - Aggregate chart performance by song and region.
-   - Compare the songs appearing in each region, including their chart appearances, peak rank, and cumulative chart streams.
-   - Identify regional patterns that may inform hypotheses for localized playlists.
-
-4. **Limitations**
-   - The analysis includes songs that appeared on the selected charts and does not represent all regional Spotify listening.
-   - Cumulative streams can reflect differences in chart appearances and overall market listening volume. They should not be interpreted as a direct measure of relative listener preference across regions.
-   - The dataset does not provide regional Spotify user counts or playlist engagement metrics.
-   - The analysis can suggest localization hypotheses but cannot establish whether a proposed playlist would improve engagement or retention.
-
-## 5. Data Scope and Interpretation
-
-The analysis uses Spotify Charts data from January 1, 2017, to December 31, 2021. The primary analysis focuses on the Global Top 200, while regional Top 200 data are analyzed separately for KQ3.
-
-The dataset supports historical chart-performance analysis, including observed chart appearances, rankings, chart span, and recorded streams for songs appearing on the selected charts. Because chart dates may not represent every calendar day, chart appearances and calendar span are treated as separate measures. Continuous chart runs will only be analyzed if the observation sequence supports a defensible definition.
-
-The 2024 beef serves as the business scenario motivating this analysis, not as an event whose impact will be measured. The available data cannot directly measure the impact of the 2024 beef, all Spotify listening activity, playlist engagement, listener retention, or artist revenue.
-
-The findings will inform playlist curation and product hypotheses rather than establish that a particular playlist strategy will improve engagement or retention.
-
-# Key Findings
-
-
-
-# Methodology
-The analysis was conducted in PostgreSQL using pgAdmin.
-
-
-# Data Source
-1. Dataset 
-    Dataset: [Spotify Charts — Kaggle](https://www.kaggle.com/datasets/dhruvildave/spotify-charts/data)
-    The raw dataset is not included in this repository. Refer to `data/README.md` for dataset access and import notes.
-2. Data Overview
-    - File Size: 3.48 GB (uncompressed CSV)
-    - Record Count: 26,173,514 rows * 9 columns
-3. Data Granularity & Scope 
-    - Unit of Analysis: Each record represents the ranking and performance of an individual track for a specific chart, region, and date.
-    - Temporal Coverage: January 1, 2017 – December 31, 2021
-    - Temporal Frequency: Snapshot-based, updated every 2–3 days (daily chart format)
-    - Inclusion Criteria: Tracks featured on Spotify's Top 200 or Viral 50 charts across 70 distinct regions.
-    - streams data is only recorded for Top 200 charts; all Viral 50 entries have null values for this field.
-4. Data Dictionary & Column Profiles
-    | Column | Data Type | Missing Values | Cardinality (Unique) | Description / Notes |
-    | :--- | :--- | :--- | :--- | :--- |
-    | `title` | String | 0 (0%) | 164,807 | Track name. |
-    | `rank` | Integer | 0 (0%) | 200 | Chart position (ranges from 1 to 200). |
-    | `date` | Date | 0 (0%) | ~1,826 | Chart release date (`YYYY-MM-DD`). |
-    | `artist` | String | 0 (0%) | ~96.2K | Name of the artist(s). |
-    | `url` | String | 0 (0%) | 217,704 | Spotify track link / Unique identifier. |
-    | `region` | Categorical | 0 (0%) | 70 | Market/Country covered (e.g., Global, Argentina). |
-    | `chart` | Categorical | 0 (0%) | 2 | Chart type: mutually exclusive between `top200` (~78%) and `viral50` (~22%). |
-    | `trend` | Categorical | 0 (0%) | 4 | Track movement. Contains 4 discrete categories: `MOVE_DOWN` (43%), `MOVE_UP` (37%), and two additional states (e.g., `SAME_POSITION`, `NEW_ENTRY` — pending verification via EDA). |
-    | `streams` | Integer | ~5.85M (22.3%) | Continuous | Stream count. Missing exclusively for `viral50` entries, as Spotify does not report stream volume for Viral charts. |
-5. Inference Limitations:
-    **What this dataset can answer:**
-    - A song’s ranking on the Spotify Top 200 chart.
-    - A song’s chart performance across different years, months, and regions.
-    - How long a song remains on the chart.
-    - The recorded stream counts for songs featured on the Top 200 chart.
-    - How often and for how long a song appears on the Viral 50 chart across different years, months, and regions. However, stream counts are not available for Viral 50 entries.
-
-    **What this dataset cannot answer:**
-    - Whether a region’s higher stream counts are caused by a larger Spotify user base.
-    - How much revenue an artist earns from streaming.
+**Implication:** Broadly represented tracks could form a common playlist foundation. Selected lower-coverage tracks, including YAH. in Bulgaria, may warrant further investigation, but these patterns do not establish local listener preference.
 
 ## Metric Definitions
 
+| Metric | Definition |
+|---|---|
+| Chart appearances | Number of distinct observed chart dates for a song within the selected scope. |
+| Peak chart position | Best observed chart rank; #1 is the highest position. |
+| Cumulative chart streams | Sum of recorded streams within the selected chart and time scope. |
+| Chart span | Calendar-day difference between the first and last observed chart dates; not continuous chart presence. |
+| Annual chart appearances | Number of distinct observed chart dates within a calendar year. |
+| Regional Top 10 coverage | Number and percentage of eligible markets in which a track identity ranks in the analyst-defined regional Top 10. |
+| Regional analysis rank | Within-market ranking based on chart appearances, peak rank, title, and URL; not Spotify's official chart rank. |
 
+## Data Source and Scope
 
+- **Dataset:** [Spotify Charts on Kaggle](https://www.kaggle.com/datasets/dhruvildave/spotify-charts/data)
+- **Scale:** Approximately 26.17 million rows and 9 columns; original CSV approximately 3.48 GB.
+- **Period:** January 1, 2017 – December 31, 2021.
+- **Coverage:** 70 distinct regions, including Global; the dataset includes Top 200 and Viral 50 chart entries.
+- **Analysis scope:** Kendrick Lamar-related records, with Global Top 200 used for KQ1 and KQ2 and non-Global Top 200 records used for KQ3.
 
+### Limitations
 
+- Chart data covers observed chart entries, not all Spotify listening activity. Chart appearances represent observed dates and may not be consecutive.
+- Cumulative streams are influenced by market size and chart visibility; they are not a direct measure of listener preference.
+- Regional Top 10 coverage uses 66 markets with qualifying Kendrick Lamar chart records, not every region in the raw dataset.
+- Collaboration identification relies partly on title-based heuristics and may include classification errors.
+- Tracks with the same title but different URLs may represent separate track identities in the analysis.
+- The findings are descriptive and do not establish causality or predict playlist engagement.
 
-##  Implications
+## Implications and Next Steps
 
+- **Music Editorial:** Use established hits as the foundation for a retrospective playlist and review secondary catalog tracks for a “Beyond the Hits” concept.
+- **Product:** Explore collaboration-based discovery pathways, then validate candidate tracks with additional catalog data and editorial input.
+- **Regional Editorial:** Use cross-market coverage and selected regional patterns to generate localization hypotheses.
+- **Validation:** Before launch, assess listening, playlist exposure, saves, skips, completion, and other available engagement metrics. Where feasible, compare results against a suitable baseline or control group.
 
+## Repository Structure
 
-# Repository Structure
--- 這段留給AI改
 ```text
-case1/
-├── README.md
+.
 ├── data/
 │   └── README.md
 ├── sql/
-│   ├── 01_data_import_check.sql
-│   ├── 02_customer_metrics.sql
-│   ├── 03_customer_segmentation.sql
-│   └── 04_customer_value_contribution.sql
-├── docs/
-│   ├── analysis_log.md
-│   └── ai_collaboration.md
+│   ├── 00_setup.sql
+│   ├── 01_data_profiling.sql
+│   ├── 02_kq1_global_performance.sql
+│   ├── 03_kq2_collaborations.sql
+│   └── 04_kq3_regional_analysis.sql
 ├── output/
-│   ├── 03_rfm_combination_distribution.csv
-│   ├── 03_high_value_segment_distribution.csv
-│   ├── 03_high_value_segment_comparison.csv
-│   ├── 03_campaign_response_distribution.csv
-│   ├── 03_product_spending_mix_comparison.csv
-│   ├── 03_purchase_channel_comparison.csv
-│   ├── 03_campaign_response_validation.csv
-│   └── 04_customer_value_contribution.csv
-└── .gitignore
+│   ├── 01_kq1_song_summary.csv
+│   ├── 02_kq1_song_year_summary.csv
+│   ├── 04_kq2_collaboration_candidates.csv
+│   ├── 05_kq2_collaboration_song.csv
+│   ├── 06_kq2_collaboration_performance.csv
+│   ├── 07_kq3_song_region_summary.csv
+        08_kq3_08.kq3_region_rank_top10.csv
+        09_09.kq3_region_rank_top10_frequency.csv
+│   ├── 11_kq3_cross_region_top10_coverage.csv
+│   └── 12_kq3_representative_song_comparison.csv
+└── README.md
 ```
 
+## How to Reproduce
 
+1. Obtain the dataset from Kaggle and follow `data/README.md` for data access and import instructions.
+2. Create the `spotify_charts` table in PostgreSQL and import the dataset.
+3. Execute the SQL scripts in numerical order.
+4. Review the validation queries before interpreting the results.
+5. Export query outputs using the documented filenames.
+6. Use the exported results to reproduce the charts and review the findings.
 
-# How to Reproduce
-
-1. Obtain the dataset from Kaggle and follow the import instructions in `data/README.md`.
-2. Load the data into PostgreSQL using the table name ``.
-3. Execute the SQL files in numerical order, from data validation through customer value contribution analysis.
-4. Compare the query results with the CSV outputs in `output/`.
-
-The output files provide reference results for reviewing the analysis.
-
-
-
-
-# Deliverables
--- 最後改
-- **[View the Customer Segmentation Case Study (PDF)](docs/Case%201_%20Customer%20Segmentation%20for%20CRM%20Prioritization.pdf)** — Visual summary of the segmentation analysis, key findings, and CRM implications.
-- SQL analysis and reference outputs are available in this repository.
+The raw dataset is not included in this repository. Import paths and database settings must be adapted to the local environment.

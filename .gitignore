@@ -8,3 +8,5 @@ output/*.tmp
 # OS files
 .DS_Store
 Thumbs.db
+
+docs/*gpt*
